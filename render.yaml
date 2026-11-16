@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: smartcivicai-api
+    runtime: python
+    plan: starter
+    autoDeploy: false
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 4 'app:create_app()'
+    healthCheckPath: /api/health
+    disk:
+      name: smartcivicai-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /var/data/smartcivic.db
+      - key: UPLOAD_FOLDER
+        value: /var/data/uploads
+      - key: FRONTEND_ORIGINS
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: BREVO_SENDER_EMAIL
+        sync: false
+      - key: BREVO_SENDER_NAME
+        value: SmartCivicAI
+
+  - type: web
+    name: smartcivicai-frontend
+    runtime: static
+    autoDeploy: false
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false

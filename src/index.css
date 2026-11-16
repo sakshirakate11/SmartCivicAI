@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'DM Sans', 'Noto Sans Devanagari', Mangal, sans-serif;
+  color: #172b4d;
+  background: #f5f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+.grid-paper {
+  background-image: linear-gradient(rgba(36, 99, 235, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(36, 99, 235, .045) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.hero-orb {
+  background: radial-gradient(circle at 50% 50%, rgba(82, 147, 255, .24), rgba(82, 147, 255, .08) 48%, transparent 69%);
+}
+
+.scrollbar-hidden { scrollbar-width: none; }
+.scrollbar-hidden::-webkit-scrollbar { display: none; }
