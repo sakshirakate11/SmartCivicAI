@@ -114,3 +114,4 @@ The root `render.yaml` describes two services for this project: the existing Fla
 7. After deployment, open `https://your-api.onrender.com/api/health` and confirm it returns `{"status":"ok"}`. Then test sign-in, a complaint with an image, in-app notifications, and Brevo email (if configured). Restart the backend and verify the complaint and image remain available.
 
 SQLite migrations in this application are additive and run on startup. They do not replace the database file, but the application cannot migrate local records that were not transferred to the persistent disk. Keep separate backups of the database and uploaded images.
+SmartCivicAI Frontend Deployment
